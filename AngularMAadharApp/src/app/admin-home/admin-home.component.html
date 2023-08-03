@@ -1,0 +1,45 @@
+<div>
+  <nav class="navbar navbar-expand-md navbar-light bg-light">
+    <div class="container">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/admin-home" routerLinkActive="active">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/citizenlist" routerLinkActive="active">Citizen List</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/admin-login">Logout</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <div class="container mt-4">
+    <h1 class="text-center">Admin Home</h1>
+    <table class="table table-bordered">
+      <thead class="thead-light">
+        <tr>
+          <th>ID</th>
+          <th>Citizen ID</th>
+          <th>Application Status</th>
+          <th>Date of Application</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngIf="applications.length === 0">
+          <td colspan="5" class="text-center">No data found</td>
+        </tr>
+        <tr *ngFor="let application of applications" [hidden]="applications.length === 0">
+          <td>{{ application.applnId }}</td>
+          <td>{{ application.citizenid }}</td>
+          <td>{{ getApplicationStatusString(application.applicationStatus) }}</td>
+          <td>{{ application.dateOfAppln }}</td>
+          <td>
+            <button *ngIf="application.applicationStatus === 1" (click)="issueAadhar(application.citizenid)" class="btn btn-primary">Issue Aadhar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

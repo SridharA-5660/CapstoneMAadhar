@@ -1,0 +1,24 @@
+<br>
+<div class="login-container">
+  <h1 class="text-center mb-4">Admin Login</h1>
+  <form (ngSubmit)="login()" >
+    <div class="form-group col-md-3 mx-auto">
+      <label for="adminId">Admin ID:</label><br><br>
+      <input type="text" id="adminId" name="adminId" [(ngModel)]="adminId" class="form-control">
+    </div>
+    <br>
+    <div class="form-group col-md-3 mx-auto">
+      <label for="password">Password:</label><br><br>
+      <input type="password" id="password" name="password" [(ngModel)]="password" class="form-control">
+    </div>
+    <br>
+    <div class="d-flex justify-content-center">
+      <button type="submit" class="btn btn-primary me-2">Login</button>
+      <button (click)="redirectToUserLogin()" class="btn btn-secondary">User Login</button>
+    </div>
+
+    <div *ngIf="loginError" class="alert alert-danger mt-3">
+      Invalid Admin ID or Password
+    </div>
+  </form>
+</div>

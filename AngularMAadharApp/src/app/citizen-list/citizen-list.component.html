@@ -1,0 +1,47 @@
+<div>
+  <nav class="navbar navbar-expand-md navbar-light bg-light">
+    <div class="container">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/admin-home" routerLinkActive="active">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/citizenlist" routerLinkActive="active">Citizen List</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/admin-login">Logout</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <div class="container mt-4">
+    <h1 class="text-center">Citizen List</h1>
+    <table class="table table-bordered">
+      <thead class="thead-light">
+        <tr>
+          <th>Citizen ID</th>
+          <th>Name</th>
+          <th>Aadhar No</th>
+          <th>Phone No</th>
+          <th>DOB</th>
+          <th>Action</th> <!-- New column for delete button -->
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let citizen of citizens">
+          <td>{{ citizen.citizenId }}</td>
+          <td>{{ citizen.name }}</td>
+          <td>{{ citizen.aadharNo?citizen.aadharNo:"*Nil*" }}</td>
+          <td>{{ citizen.phoneNo }}</td>
+          <td>{{ citizen.dob }}</td>
+          <td>
+            <button class="btn btn-danger" (click)="deleteCitizen(citizen.citizenId)">Delete</button>
+          </td>
+        </tr>
+        <tr *ngIf="citizens.length === 0">
+          <td colspan="6" class="text-center">No data found</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

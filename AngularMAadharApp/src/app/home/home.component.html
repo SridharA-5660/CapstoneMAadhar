@@ -1,0 +1,125 @@
+<nav class="navbar navbar-expand-md navbar-light bg-light">
+  <div class="container">
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/home">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/update">Update</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/login">Logout</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+<br><br>
+<div class="home-container">
+
+  <div *ngIf="hasAadharData">
+    <div class="card mb-4">
+      <div class="card-header">
+        <h2>Aadhar Card</h2>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-3">
+           
+            <img src="/assets/person.jpg" class="img-fluid" alt="Aadhar Photo" width="300px" height="200px">
+          </div>
+          <div class="col-md-8">
+            <table class="table table-bordered mt-5">
+              <tbody>
+                <tr>
+                  <td>Citizen Id</td>
+                  <td>{{ citizenId }}</td>
+                </tr>
+                <tr>
+                  <td>Name</td>
+                  <td>{{ citizenData?.name }}</td>
+                </tr>
+                <tr>
+                  <td>Date of Birth</td>
+                  <td>{{ citizenData?.dob }}</td>
+                </tr>
+                <tr>
+                  <td>Address</td>
+                  <td>{{ citizenData?.address }}</td>
+                </tr>
+                <!-- Add other Aadhar details here -->
+                <tr>
+                  <td>Issued date</td>
+                  <td>{{ aadharData?.issuedDate}}</td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="mt-5 text-center">
+              <strong>
+              <p style="font-size: 18px;">{{ aadharData?.aadharNo }}</p></strong>
+            </div>
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+    <button class="text-center btn-primary" (click)="showPopup()">Issue Duplicate Aadhar</button>
+`   </div>
+  </div>
+
+ 
+
+  <div *ngIf="!hasAadharData" class="d-flex justify-content-center">
+    <div class="card mb-4 w-25">
+      <div class="card-header">
+        <h2>Citizen Data</h2>
+      </div>
+      <div class="card-body">
+        <table class="table">
+          <tbody>
+            <tr>
+              <td>Citizen:</td>
+              <td>{{ citizenId }}</td>
+            </tr>
+            <tr>
+              <td>Name:</td>
+              <td>{{ citizenData?.name }}</td>
+            </tr>
+            <tr>
+              <td>Date of Birth:</td>
+              <td>{{ citizenData?.dob }}</td>
+            </tr>
+            <tr>
+              <td>Address:</td>
+              <td>{{ citizenData?.address }}</td>
+            </tr>
+            <tr>
+              <td>Phone No:</td>
+              <td>{{ citizenData?.phoneNo }}</td>
+            </tr>
+            <tr>
+              <td>Email:</td>
+              <td>{{ citizenData?.email }}</td>
+            </tr>
+            <tr>
+              <td>Gender:</td>
+              <td>{{ getGenderString(citizenData?.gender) }}</td>
+            </tr>
+          </tbody>
+        </table>
+  
+        <ng-container *ngIf="aadharData">
+          <!-- If aadharData is present, show "Request Sent" button -->
+          <p>Request Sent</p>
+        </ng-container>
+  
+        <ng-container *ngIf="!aadharData">
+          <!-- If aadharData is not present, show "Issue Aadhar" button -->
+          <button (click)="issueAadhar()">Issue Aadhar</button>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+  
+</div>
